@@ -91,21 +91,30 @@
     </div>
 </div>
 <script>
-    const signupButton = document.querySelector('#signup-button');
+    const signupButton = document.querySelector('#signup-button');  //selecting signup button element
 
+    //event listener for signup button click
     signupButton.addEventListener('click', () => {
+        //redirect to signup page
         window.location.href = 'signup.html';
     });
+
+    //selecting login button element
     const loginButton = document.querySelector('#login-button');
-        loginButton.addEventListener('click', () => {
+        loginButton.addEventListener('click', () => {   //event listener for login button click
+            //redirect to signup page
         window.location.href = 'signin.html';
     });
+
+    //function to scroll testimonials
     function scrollTestimonials(direction) {
         const testimonials = document.querySelector('.testimonials');
         const itemWidth = testimonials.firstElementChild.offsetWidth;
         const currentScrollLeft = testimonials.scrollLeft;
         testimonials.scrollLeft = currentScrollLeft + (itemWidth * direction);
     }
+
+    //function to scroll featured items
     function scrollFeaturedItems(direction) {
         const featuredItems = document.querySelector('.featured-items')
         const itemWidth = featuredItems.firstElementChild.offsetWidth;
