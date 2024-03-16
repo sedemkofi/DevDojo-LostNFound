@@ -87,21 +87,25 @@
     </div>
 </div>
 <script>
-    const signupButton = document.querySelector('#signup-button');
-
+    // Selecting the signup button element and adding event listener to redirect to signup page on click
+    const signupButton = document.querySelector('#signup-button');  
     signupButton.addEventListener('click', () => {
     window.location.href = 'signup.html';
     });
+    
+// Selecting the login button element and adding event listener to redirect to signin page on click
     const loginButton = document.querySelector('#login-button');
         loginButton.addEventListener('click', () => {
         window.location.href = 'signin.html';
     });
+    // Function to scroll testimonials horizontally based on direction
     function scrollTestimonials(direction) {
         const testimonials = document.querySelector('.testimonials');
         const itemWidth = testimonials.firstElementChild.offsetWidth;
         const currentScrollLeft = testimonials.scrollLeft;
         testimonials.scrollLeft = currentScrollLeft + (itemWidth * direction);
     }
+    // function to scroll featured items horizontally based on direction
     function scrollFeaturedItems(direction) {
         const featuredItems = document.querySelector('.featured-items')
         const itemWidth = featuredItems.firstElementChild.offsetWidth;
