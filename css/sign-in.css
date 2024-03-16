@@ -1,0 +1,100 @@
+
+  body {
+    margin: 0;
+    font-family: 'Enriqueta', serif;
+    background-color: #272127; 
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .header {
+    font-family: 'Gamja Flower', cursive;
+    font-size: 32px;
+    position: absolute;
+    top: 0;
+    left: 20px;
+  }
+  .signin-container {
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+  }
+  .signin-form {
+    display: flex;
+    flex-direction: column;
+  }
+  .input-group {
+    margin-bottom: 15px;
+  }
+  .input-group input {
+    width: 80%; 
+    padding: 10px;
+    margin: 0 auto; 
+    border: none;
+    border-radius: 5px;
+    background-color: #FFF; 
+    color: #333;
+  }
+  .button {
+    width: 80%; 
+    padding: 10px;
+    margin: 0 auto; 
+    border: none;
+    border-radius: 5px;
+    background-color: #5cb85c; 
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .button:hover {
+    background-color: #4cae4c;
+  }
+  .alternative {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .alternative::before,
+  .alternative::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #555;
+  }
+  .or-text {
+    margin: 0 10px;
+    color: #aaa;
+  }
+  .social-buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+  .social-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    background-color: #222; 
+    color: white;
+    font-size: 20px;
+    text-decoration: none;
+    margin: 0 5px;
+  }
+  .forgot-password {
+    margin-top: 10px;
+    color: #aaa;
+  }
+  .forgot-password a {
+    color: #6eb8ff;
+    text-decoration: none;
+  }
+  .signup-prompt {
+    margin-top: 20px;
+  }
+  .signup-prompt a {
+    color: #6eb8ff;
+    text-decoration: none;
+  }
+  
