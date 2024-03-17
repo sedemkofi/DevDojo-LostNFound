@@ -15,7 +15,7 @@
 
 <div class="signup-container">
   <h2>Create New Account</h2>
-  <form action="../actions/register_user.php"  id="signupForm">
+  <form action="../actions/register_user.php" method="post" id="signupForm">
     <div class="input-row">
       <div class="input-group">
         <label for="firstName">First Name</label>

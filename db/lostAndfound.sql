@@ -36,7 +36,6 @@ CREATE TABLE User
     RoleID INT,
     DateOfBirth DATE,
     Gender VARCHAR(10),
-    ContactNumber VARCHAR(20),
     FOREIGN KEY (RoleID) REFERENCES user_role(RoleID)
 );
 
@@ -69,8 +68,8 @@ INSERT INTO user_role (RoleID, RoleName) VALUES
 (2, 'admin'),
 (3, 'user');
 
-INSERT INTO User (UserID, FirstName, LastName, Email, Password, RoleID, DateOfBirth, Gender, ContactNumber) VALUES 
-(1, 'Sedem', 'Amediku', 'sedemamedeks@gmail.com','1234', 1, '2000-02-05', 'M', '0200838143');
+INSERT INTO User (UserID, FirstName, LastName, Email, Password, RoleID, DateOfBirth, Gender) VALUES 
+(1, 'Sedem', 'Amediku', 'sedemamedeks@gmail.com','1234', 1, '2000-02-05', 'M');
 
 -- Setting unclaimed as default status
 ALTER TABLE Item

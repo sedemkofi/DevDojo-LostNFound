@@ -25,6 +25,9 @@ form.addEventListener('submit', (e) =>{
   if(password.value === 'password'){
     messages.push('Password cannot be password')
   }
+  if (!email.value.endsWith('@ashesi.edu.gh')) {
+    messages.push('Email must be a valid Ashesi University email')
+}
   //prevent form submission if there are errors
   if (messages.length > 0) {
     e.preventDefault()

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "../settings/connection.php";
 
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -41,4 +42,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 }
+$stmt->close();
+$con->close();
 ?>
