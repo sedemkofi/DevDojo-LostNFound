@@ -105,15 +105,17 @@
     </div>
 </body>
 <script>
+    // Selecting elements with IDs 'item1' and 'claim-btn1'
     const item1 = document.getElementById('item1');
     const claimbtn1 = document.getElementById('claim-btn1');
- 
 
+    // Getting all elements with class 'claim-btn'
     function showClaimButton(buttonName) { 
-        const buttons = document.getElementsByClassName('claim-btn');
-        for (let i = 0; i < buttons.length; i++) {
+        const buttons = document.getElementsByClassName('claim-btn');  // Selecting all claim buttons by class name
+        for (let i = 0; i < buttons.length; i++) {  // Looping through all claim buttons
             buttons[i].style.display = 'none';
         }
+        // Selecting the specific claim button to show
         const button = document.getElementById(buttonName);
         if (button.style.display === 'none') {
             button.style.display = ''; 

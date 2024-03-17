@@ -59,6 +59,7 @@
 </body>
 </html>
 <script>
+    //get reference to the elements in the dom
     const changePasswordButton = document.getElementById('change-password-button');
     const confirmPasswordContainer = document.getElementById('confirm-password-container');
     const cancelChange = document.getElementById('cancel-button');
@@ -66,15 +67,18 @@
     const confirmPasswordInput = document.getElementById("confirm-password-input");
     const logOut = document.getElementById('log-out');
 
+    //add event listener to logout button to redirect to the sign in page
     logOut.addEventListener('click', ()=> {
         window.location.href = 'signin.html';
     })
 
+    //add event listener to cancel button to undo changes on password
     cancelChange.addEventListener('click', () => {
         changePasswordButton.style.display = '';
         confirmPasswordContainer.style.display = 'none';
-        passwordInput.value = '**********';
+        passwordInput.value = '**********'; //reset password input field
     })
+    //Add event listener to change password button to display confirm password
     changePasswordButton.addEventListener('click', () => {
     confirmPasswordContainer.style.display = 'block';
     changePasswordButton.style.display = 'none';

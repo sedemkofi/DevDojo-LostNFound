@@ -48,16 +48,18 @@
 </div>
 
 <script>
+  // Selecting the login button and input fields by their IDs
     const loginButton = document.querySelector('#sign-in-button');
     const emailInput = document.querySelector('#email');
     const passwordInput = document.querySelector('#password');
 
     loginButton.addEventListener('click', () => {
-      event.preventDefault(); 
+      event.preventDefault(); // Preventing the default form submission behavior
+      // Checking if both email and password fields are not empty
         if (emailInput.value !== '' && passwordInput.value !== '') {
-        window.location.href = 'homepage.html';
+        window.location.href = 'homepage.html';  // Redirecting to the homepage if login credentials are valid
       }else{
-        alert('Enter your username and password to Sign in')
+        alert('Enter your username and password to Sign in')    // Displaying an alert if either email or password is empty
       }
 });
 </script>
