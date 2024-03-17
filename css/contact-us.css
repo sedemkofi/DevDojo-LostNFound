@@ -75,3 +75,29 @@ button{
 .dropdown:hover .dropdown-content {
     display: block;
 }
+#message{
+    
+    text-align: center;
+    font-size: 150%;
+    color: maroon;
+}
+#message-head{
+    font-size: 15px;
+}
+#send-message{
+    margin-top: 5%;
+    margin-left: 40%;
+    margin-right: 40%;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    
+    background-color: maroon;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#send-message:hover{
+    background-color: black;
+}

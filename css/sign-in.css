@@ -98,3 +98,16 @@
     text-decoration: none;
   }
   
+  .login-type-link a{
+    font-family: monospace;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    text-decoration: none;
+  }
+.login-type-link a:hover {
+  font-size: 16px;
+  color: green;
+}
