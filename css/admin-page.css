@@ -45,6 +45,19 @@ input{
 #addItemSubmit:hover{
     background-color: #4cae4c;
 }
+#addAdminSubmit{
+    margin-left: 2px;
+    font-size: 10px;
+    cursor: pointer;
+    width: 60px;
+    height: 20px;
+    margin-top: 20px;
+    border-color:green;
+    border-radius: 5px;
+}
+#addAdminSubmit:hover{
+    background-color: #4cae4c;
+}
 #cancelAddItem{
     margin-left: 2px;
     font-size: 10px;
@@ -55,7 +68,22 @@ input{
     border-color:green;
     border-radius: 5px;
 }
+#cancelAddAdmin{
+    margin-left: 2px;
+    font-size: 10px;
+    cursor: pointer;
+    width: 60px;
+    height: 20px;
+    margin-top: 20px;
+    border-color:green;
+    border-radius: 5px;
+}
 #cancelAddItem:hover{
+    border-color: black;
+    color: white;
+    background-color: firebrick;
+}
+#cancelAddAdmin:hover{
     border-color: black;
     color: white;
     background-color: firebrick;
@@ -122,7 +150,21 @@ input{
     border-color:green;
     border-radius: 5px;
 }
+#addAdminButton{
+    font-size: 12px;
+    float: right;
+    cursor: pointer;
+    width: 80px;
+    height: 25px;
+    margin-top: 20px;
+    border-color:green;
+    border-radius: 5px;
+}
+
 #addItemButton:hover{
+    background-color: #4cae4c;
+}
+#addAdminButton:hover{
     background-color: #4cae4c;
 }
 #picture-label{
