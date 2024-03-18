@@ -1,3 +1,9 @@
+<?php
+
+include '../settings/connection.php';
+include '../functions/item_fxn.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +24,8 @@
                         <img src="../images/logo.png" alt="Logo" class="lost-logo"> 
                     </button>
                     <div class="dropdown-content">
-                        <a href="admin-manage-admins.html">View Admins</a>
-                        <a href="../settings.html">Settings</a>  
+                        <a href="admin-manage-admins.php">View Admins</a>
+                        <a href="../view/settings.php">Settings</a>  
                     </div>
                 </div>
             </div>
@@ -44,7 +50,7 @@
         </div>
         <button id="addItemButton">Add Item</button><br><br>
         <br>
-    <form action="../actions/add_item_action.php" method="post" name="addItem" id="addItem">
+    <form action="../actions/add_item.php" method="post" name="addItem" id="addItem" enctype="multipart/form-data">
         <label for="itemName">Item Name</label><br><br>
         <input type="text" id="itemName" name="itemName" placeholder="Enter item name" required>        
         <br><br>

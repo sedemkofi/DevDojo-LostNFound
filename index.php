@@ -17,9 +17,9 @@
                         <img src="/images/logo.png" alt="Logo" class="lost-logo"> 
                     </button>
                     <div class="dropdown-content">
-                        <a href="missing-items.html">Missing Items</a>
-                        <a href="settings.html">Settings</a>                    
-                        <a href="contact.html">Contact Us</a>
+                        <a href="view/missing-items.php">Missing Items</a>
+                        <a href="view/settings.php">Settings</a>                    
+                        <a href="view/contact.php">Contact Us</a>
                     </div>
                 </div>
     
@@ -96,14 +96,14 @@
     //event listener for signup button click
     signupButton.addEventListener('click', () => {
         //redirect to signup page
-        window.location.href = 'signup.html';
+        window.location.href = 'view/signup.php';
     });
 
     //selecting login button element
     const loginButton = document.querySelector('#login-button');
         loginButton.addEventListener('click', () => {   //event listener for login button click
             //redirect to signup page
-        window.location.href = 'signin.html';
+        window.location.href = 'view/signin.php';
     });
 
     //function to scroll testimonials

@@ -1,47 +1,57 @@
 <?php
-session_start();
-include "../settings/connection.php";
 
-// Check if the form was submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate input
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+require '../settings/connection.php';
+
+if (isset($_POST['Submit'])) {
     $firstname = trim($_POST['firstName']);
     $lastname = trim($_POST['lastName']);
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
     $password = $_POST['password'];
+    $confirmPassword = $_POST['confirm-password'];
 
-    // Check for empty field
-    if (empty($firstname) || empty($lastname) || empty($email) || empty($password)) {
-        header('Location: ../view/signup.php');
+    if ($password !== $confirmPassword) {
+        header('Location: ../view/signup.php?error=password_mismatch');
         exit();
     }
 
     // Hash the password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    // Connect to the database
-    $con = new mysqli('localhost', 'root', '', 'LFS2024');
+    $query = "SELECT * FROM `User` WHERE `Email` = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($con->connect_error) {
-        echo "Failed to connect";
+    if ($result->num_rows > 0) {
+        // User already exists, redirect back to signup page
+        header('Location: ../view/signup.php?error=email_in_use');
+        echo '<script>alert("This email is already in use. Please use a different email address.")</script>';
         exit();
     }
 
-    // Use prepared statement to prevent SQL injection
-    $query = "INSERT INTO User (FirstName, LastName, Email, Password, RoleID) VALUES (?, ?, ?, ?,?)";
-    $stmt = $con->prepare($query);
-    $stmt->bind_param("ssssi", $firstname, $lastname, $email, $hashed_password, 3);
+    $query = "INSERT INTO `User` (`FirstName`, `LastName`, `Email`, `Password`, `RoleID`) VALUES ('$firstname', '$lastname', '$email', '$hashed_password', '3')";
+    $stmt = mysqli_prepare($conn, $query);
 
-    if ($stmt->execute()) {
+    if(!$stmt){
+        die("Query preparation failed: " . mysqli_error($conn));
+    }
+    
+    $success = mysqli_stmt_execute($stmt);
+    if ($success) {
         // User successfully registered, redirect to login page
         header('Location: ../view/signin.php');
         exit();
     } else {
         // Error occurred during registration, redirect back to signup page
-        header('Location: ../view/signup.php');
+        header('Location: ../view/signup.php?error=registration_failed');
         exit();
     }
+    $stmt->close();
 }
-$stmt->close();
-$con->close();
+
+
+
 ?>

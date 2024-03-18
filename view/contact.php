@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact Us</title>
 <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@400;700&family=Gamja+Flower&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/contact-us.css">
+<link rel="stylesheet" href="../css/contact-us.css">
 
 </head>
 <body>
@@ -14,12 +14,12 @@
         <div class="user-actions">
             <div class="dropdown">
                 <button class="show-sidebar-button">
-                    <img src="/images/logo.png" alt="Logo" class="lost-logo"> 
+                    <img src="../images/logo.png" alt="Logo" class="lost-logo"> 
                 </button>
                 <div class="dropdown-content">
-                    <a href="homepage.html">Home</a>
-                    <a href="missing-items.html">Missing Items</a>
-                    <a href="settings.html">Settings</a>
+                    <a href="homepage.php">Home</a>
+                    <a href="missing-items.php">Missing Items</a>
+                    <a href="settings.php">Settings</a>
                   </div>
             </div>                
         </div>

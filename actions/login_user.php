@@ -1,50 +1,34 @@
-<?php
+
+<?php 
+
 session_start();
+require '../settings/connection.php';
 
-// Check if the form was submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate input
-    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-    $password = $_POST['password'];
+if(isset($_POST['loginSubmit'])){
+    $email =  $_POST['loginEmail'];
+    $password = $_POST['loginPassword'];
 
-    // Check if email is valid
-    if (!$email) {
-        header('Location: ../view/signin.php');
-        exit();
-    }
-
-    // Hash the password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Connect to the database
-    $con = new mysqli('localhost', 'root', '', 'LFS2024');
-
-    if ($con->connect_error) {
-        echo "Failed to connect";
-        exit();
-    }
-
-    // Use prepared statement to prevent SQL injection
-    $query = "SELECT * FROM User WHERE Email=?";
-    $stmt = $con->prepare($query);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    // Check if user exists and verify password
-    if ($result->num_rows == 1) {
-        $row = $result->fetch_assoc();
-        if (password_verify($password, $row['Password'])) {
-            // Password is correct, set session variables and redirect to homepage
-            $_SESSION['user_id'] = $row['UserID'];
-            header('Location: ../view/homepage.php');
+    $query =  "SELECT * FROM `User` WHERE `Email`='$email'";
+    $result = mysqli_query($conn, $query);
+    
+    if($data = mysqli_fetch_assoc($result)){
+        if(password_verify($password, $data['Password'])) {
+            $_SESSION['user'] = $data; // Store user data in session
+            
+            echo "Login successful";
+            header("Location: ../view/homepage.php");
+            exit();
+        } else {
+            header("Location: ../view/signin.php?error=wrong_password");
+            $_SESSION['error'] = "Password verification failed!";
             exit();
         }
+    }else{ 
+        header("Location: ../view/signin.php?error=wrong_email");
+        exit();
     }
-
-    // Invalid credentials, redirect back to signin.php
-    header('Location: ../view/signin.php');
-    exit();
+    $stmt->close();
 }
-?>
 
+$conn->close();
+?>

@@ -1,36 +1,37 @@
-//get form element and input fields
-const form = document.getElementById('signup');
-const name = document.getElementById('name');
-const lastname = document.getElementById('lastname');
-const password = document.getElementById('password');
-const email = document.getElementById('email');
+// Get the email input element
+const emailInput = document.getElementById('email');
 
-//add event listener to handle form submission
-form.addEventListener('submit', (e) =>{
-  let messages = []
-  if (name.value === '' || name.value == null){ //check if name field is empty
-    messages.push('Name is required')
+// Add an event listener to the email input element
+emailInput.addEventListener('blur', function() {
+  // Get the entered email value
+  const email = emailInput.value;
 
-  } 
-  //check if password length is less than or equal to 6 characters
-  if (password.value.length <= 6){
-    messages.push('Password must be at least 6 characters')
+  // Check if the email domain is not "@ashesi.edu.gh"
+  if (!email.endsWith('@ashesi.edu.gh') && email !== '') {
+    // Display an alert message
+    alert('Please enter an Ashesi email address.');
+    
+    // Clear the email input field
+    emailInput.value = '';
   }
+});
+// Get the password input element
+const passwordInput = document.getElementById('password');
 
-  //check if password length is less than or equal to 6 characters
-  if (password.value.length >= 20) {
-    messages.push('Password must be at least 6 characters')
-  } 
-  //check if password is password
-  if(password.value === 'password'){
-    messages.push('Password cannot be password')
+// Add an event listener to the password input element
+passwordInput.addEventListener('blur', function() {
+  // Get the entered password value
+  const password = passwordInput.value;
+
+  // Check if the password is weak
+  if (password.length < 8 && password !== '') {
+    // Display an alert message
+    alert('Please enter a strong password with at least 8 characters.');
+    
+    // Clear the password input field
+    passwordInput.value = '';
   }
-  if (!email.value.endsWith('@ashesi.edu.gh')) {
-    messages.push('Email must be a valid Ashesi University email')
-}
-  //prevent form submission if there are errors
-  if (messages.length > 0) {
-    e.preventDefault()
-    errorElement.innerText = message.join(',') //display error message
-  }
-})
+});
+
+
+

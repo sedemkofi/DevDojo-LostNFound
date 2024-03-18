@@ -2,11 +2,13 @@
 
 session_start();
 
-function checkLogin() {
-    if (!isset($_SESSION['user_id'])) {
-        header('Location: ../view/signin.php');
-        die();
-    }
+
+if (!isset($_SESSION['user'])) {
+    header('Location: ../view/signin.php');
+    die();
+}
+else{
+    return;
 }
 
 ?>

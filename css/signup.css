@@ -53,7 +53,14 @@ body {
   .input-large {
     flex: 3; 
   }
-  .button {
+  .button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  .button:disabled:hover {
+    background-color: #ddd;
+  }
+  .button:enabled {
     display: block;
     margin: 0 auto;
     margin-top: 20px;
@@ -66,7 +73,8 @@ body {
     cursor: pointer;
     font-size: 16px;
   }
-  .button:hover {
+  
+  .button:enabled:hover {
     background-color: #339733;
   }
   .help-text {

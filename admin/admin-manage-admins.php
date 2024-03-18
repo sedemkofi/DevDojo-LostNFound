@@ -1,3 +1,9 @@
+<?php
+include '../settings/core.php';
+include '../settings/connection.php';
+require '../functions/admins_fxn.php';
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,8 +19,8 @@
                         <img src="../images/logo.png" alt="Logo" class="lost-logo"> 
                     </button>
                     <div class="dropdown-content">
-                        <a href="admin-manage-items.html">Home</a>
-                        <a href="../settings.html">Settings</a>  
+                        <a href="admin-manage-items.php">Home</a>
+                        <a href="../view/settings.php">Settings</a>  
                     </div>
                 </div>
             </div>
@@ -23,14 +29,18 @@
     <table>
         <thead>
             <tr>
-                <th width="150px">Admin ID</th>
-                <th width="150px">Username</th>
-                <th width="150px">Email</th>
-                <th width="150px">Action</th>
+                <th width="200px">ID</th>
+                <th width="200px">Username</th>
+                <th width="200px">Email</th>
+                <th width="200px">Action</th>
             </tr>
         </thead>
         <tbody>
-            
+            <tr>
+                <?php 
+                    displayAdmins($admins);
+                ?>
+            </tr>
         </tbody>
     </table>
     <button id="addAdminButton">Add Admin</button><br><br>

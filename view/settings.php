@@ -1,10 +1,17 @@
+
+<?php
+require '../settings/connection.php';
+require '../settings/core.php';    
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - Website Name</title>
-    <link rel="stylesheet" type="text/css" href="css/settings.css">
+    <link rel="stylesheet" type="text/css" href="../css/settings.css">
 
 </head>
 <body>
@@ -13,12 +20,12 @@
             <div class="user-actions">
                 <div class="dropdown">
                     <button class="show-sidebar-button">
-                        <img src="/images/logo.png" alt="Logo" class="lost-logo"> 
+                        <img src="../images/logo.png" alt="Logo" class="lost-logo"> 
                     </button>
                     <div class="dropdown-content">
-                        <a href="homepage.html">Home</a>
-                        <a href="missing-items.html">Missing Items</a>
-                        <a href="contact.html">Contact Us</a>
+                        <a href="homepage.php">Home</a>
+                        <a href="missing-items.php">Missing Items</a>
+                        <a href="contact.php">Contact Us</a>
                     </div>
                 </div>                
             </div>
@@ -29,11 +36,14 @@
     <hr>
     <h2>Account Information</h2>
     <p>Name</p>
-    <input type="text" value="Temp User">
+    <input type="text" value="<?php 
+
+    echo $_SESSION['user']['FirstName'] . " " . $_SESSION['user']['LastName']; 
+    
+    ?>" disabled>
     <p>Email</p>
-    <input type="text" value="user@email.com">
-    <p>Phone Number</p>
-    <input type="text" value="+233 23 456 789">
+    <input type="text" style="width: 300px;" value="<?php 
+    echo $_SESSION['user']['Email']; ?>" disabled><br>
     <h2>Security Settings</h2>
     <div id="password-container">
         <p>Password</p>
@@ -49,13 +59,13 @@
     <br><br>
     <hr>
     <br>
-    <button class="log-out-button" id="log-out">Log Out</button>
+    <form action="../actions/logout_user.php">
+        <button class="log-out-button" id="log-out">Log Out</button>
+    </form><br>
     <button class="delete-account-btn" id="delete-account">Delete Account</button>
-    <!-- Add security settings options here -->
+   
     
-    <footer>
-        <!-- Footer content -->
-    </footer>
+   
 </body>
 </html>
 <script>
@@ -67,11 +77,7 @@
     const confirmPasswordInput = document.getElementById("confirm-password-input");
     const logOut = document.getElementById('log-out');
 
-    //add event listener to logout button to redirect to the sign in page
-    logOut.addEventListener('click', ()=> {
-        window.location.href = 'signin.html';
-    })
-
+    
     //add event listener to cancel button to undo changes on password
     cancelChange.addEventListener('click', () => {
         changePasswordButton.style.display = '';

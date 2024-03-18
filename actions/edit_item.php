@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Check if user details were successfully updated
     if ($stmt->affected_rows == 1) {
-        header("Location: ../view/missing-items.php");
+        header("Location: ../admin/admin-manage-items.php");
         exit();
     } else {
         header("Location: ../view/missing-items.php");

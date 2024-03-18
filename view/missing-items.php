@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ashesi Lost and Found</title>
     <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@400;700&family=Gamja+Flower&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/missing-item.css">
+    <link rel="stylesheet" href="../css/missing-item.css">
 </head>
 <body>
 <div class="content">
@@ -13,12 +14,12 @@
         <div class="user-actions">
             <div class="dropdown">
                 <button class="show-sidebar-button">
-                    <img src="/images/logo.png" alt="Logo" class="lost-logo"> 
+                    <img src="../images/logo.png" alt="Logo" class="lost-logo"> 
                 </button>
                 <div class="dropdown-content">
-                    <a href="homepage.html">Home</a>
-                    <a href="settings.html">Settings</a>                    
-                    <a href="contact.html">Contact Us</a>
+                    <a href="homepage.php">Home</a>
+                    <a href="settings.php">Settings</a>                    
+                    <a href="contact.php">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -26,82 +27,31 @@
     <h1>Lost Items</h1>
     <div class="grid-container">
 
-        <div class="grid-item" onclick="showClaimButton('claim-btn1')" id="item1">
-            <img src="images/apple.jpg" alt="apple-pencil">
-            <div class="item-info">
-                <h3>Apple Pencil</h3>
-                <span class="last-seen">Library</span>
-                <button class="claim-btn" style="display: none;" id="claim-btn1">Claim</button>
-            </div>
-            <div class="person-name">Posted by: Patrick</div>
-        </div>
-        
-        <div class="grid-item" onclick="showClaimButton('claim-btn2')">
-            <img src="images/apple.jpg" alt="apple-pencil">
-            <div class="item-info">
-                <h3>Apple Pencil</h3>
-                <span class="last-seen"> Library</span>
-                <button class="claim-btn" style="display: none;" id="claim-btn2">Claim</button>
-            </div>
-            <div class="person-name">Posted by: Yvonne</div>
-        </div>
-        <div class="grid-item" onclick="showClaimButton('claim-btn3')">
-            <img src="images/apple.jpg" alt="apple-pencil">
-            <div class="item-info">
-                <h3>Apple Pencil</h3>
-                <span class="last-seen"> Archer Cornfield</span>
-                <button class="claim-btn" style="display: none;" id="claim-btn3">Claim</button>
-            </div>
-            <div class="person-name">Posted by: Patrick</div>
-        </div>
-        <div class="grid-item">
-            <img src="images/apple.jpg" alt="apple-pencil">
-            <div class="item-info">
-                <h3>Apple Pencil</h3>
-                <span class="last-seen"> Library</span>
-            </div>
-            <div class="person-name">Posted by: Patrick</div>
-        </div>
-        <div class="grid-item">
-            <img src="images/apple.jpg" alt="apple-pencil">
-            <div class="item-info">
-                <h3>Apple Pencil</h3>
-                <span class="last-seen"> Library</span>
-            </div>
-            <div class="person-name">Posted by: Patrick</div>
-        </div>
-        <div class="grid-item">
-            <img src="images/apple.jpg" alt="apple-pencil">
-            <div class="item-info">
-                <h3>Apple Pencil</h3>
-                <span class="last-seen"> Library</span>
-            </div>
-            <div class="person-name">Posted by: Patrick</div>
-        </div>
-        <div class="grid-item">
-            <img src="images/apple.jpg" alt="apple-pencil">
-            <div class="item-info">
-                <h3>Apple Pencil</h3>
-                <span class="last-seen"> Library</span>
-            </div>
-            <div class="person-name">Posted by: Patrick</div>
-        </div>
-        <div class="grid-item">
-            <img src="images/apple.jpg" alt="apple-pencil">
-            <div class="item-info">
-                <h3>Apple Pencil</h3>
-                <span class="last-seen"> Library</span>
-            </div>
-            <div class="person-name">Posted by: Patrick</div>
-        </div>
-        <div class="grid-item">
-            <img src="images/apple.jpg" alt="apple-pencil">
-            <div class="item-info">
-                <h3>Apple Pencil</h3>
-                <span class="last-seen"> Library</span>
-            </div>
-            <div class="person-name">Posted by: Patrick</div>
-        </div>
+        <?php
+            include '../settings/connection.php';
+
+            $query = "SELECT * FROM Item";
+            $result = mysqli_query($conn, $query);
+
+            if ($result) {
+                $items = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                foreach ($items as $item) {
+                    echo "<div class='grid-item' onclick='showClaimButton(\"claim-btn" . $item['ItemID'] . "\")' id='item" . $item['ItemID'] . "'>";
+                    echo "<img src='" . $item['ImageSource'] . "' alt='item-image'>";
+                    echo "<div class='item-info'>";
+                    echo "<h3>" . $item['ItemName'] . "</h3>";
+                    echo "<span class='last-seen'>" . $item['LocationFound'] . "</span>";
+                    echo "<button class='claim-btn' style='display: none;' id='claim-btn" . $item['ItemID'] . "'>Claim</button>";
+                    echo "</div>";
+                    echo "<div class='person-name'>Date Found: " . $item['DateFound'] . "</div>";
+                    echo "</div>";
+                }
+            } else {
+                echo "Error: " . $query . "<br>" . mysqli_error($conn);
+            }
+
+            $conn->close();
+        ?>
     </div>
 </body>
 <script>
