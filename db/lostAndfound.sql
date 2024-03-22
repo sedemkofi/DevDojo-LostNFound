@@ -17,7 +17,10 @@ CREATE TABLE user_role
     RoleName VARCHAR(50) NOT NULL
 );
 
-
+CREATE TABLE ItemState(
+    StateID INT PRIMARY KEY auto_increment,
+    StateName VARCHAR(50) NOT NULL
+);
 
 CREATE TABLE Status
 (
@@ -28,6 +31,7 @@ CREATE TABLE Status
 -- Create the User table
 CREATE TABLE User
 (
+    UserID INT PRIMARY KEY auto_increment,
     UserID INT PRIMARY KEY auto_increment,
     FirstName VARCHAR(50) NOT NULL,
     LastName VARCHAR(50) NOT NULL,
@@ -41,12 +45,24 @@ CREATE TABLE User
 CREATE TABLE Item
 (
     ItemID INT PRIMARY KEY auto_increment,
+    ItemID INT PRIMARY KEY auto_increment,
     ItemName VARCHAR(100) NOT NULL,
     LocationFound VARCHAR(100),
     DateFound DATE,
     DateUploaded DATE,
     StatusID INT,
+    ImageSource VARCHAR(255),
     FOREIGN KEY (StatusID) REFERENCES Status(StatusID)
+);
+
+CREATE TABLE Claim_Requests(
+    RequestID INT PRIMARY KEY auto_increment,
+    ItemID INT,
+    UserID INT,
+    StateID INT,
+    FOREIGN KEY (ItemID) REFERENCES Item(ItemID),
+    FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (StateID) REFERENCES ItemState(StateID)
 );
 
 
@@ -66,6 +82,11 @@ INSERT INTO user_role (RoleID, RoleName) VALUES
 (2, 'admin'),
 (3, 'user');
 
+INSERT INTO ItemState (StateID, StateName) VALUES 
+(1, 'Pending'),
+(2, 'Approved'),
+(3, 'Rejected');
+
 INSERT INTO User (FirstName, LastName, Email, RoleID, Password) VALUES 
 ('Ashesi', 'Admin', 'admin@ashesi.edu.gh', 1,'$2y$10$VysWN9cm3ZKCWhCd25L7SeSOD172Pct2VzqdkgvAsSrYj8mY0RJkm');
 
@@ -73,4 +94,6 @@ INSERT INTO User (FirstName, LastName, Email, RoleID, Password) VALUES
 ALTER TABLE Item
 MODIFY StatusID INT DEFAULT 1;
 
+ALTER TABLE Claim_Requests
+MODIFY StateID INT DEFAULT 1;
 COMMIT;

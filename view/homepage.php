@@ -1,4 +1,13 @@
+<<<<<<< HEAD
+<?php
+    require '../settings/core.php';
+  if(!isset($_SESSION['user'])) {
+    header("Location: signin.php?error=no-user-signed-in");
+  } 
+?>
+=======
 
+>>>>>>> ec6ce5976a480027ae4b9f379390c39d61f9adc1
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,9 +17,17 @@
     <title>Ashesi Lost and Found</title>
     <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@400;700&family=Gamja+Flower&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
+<<<<<<< HEAD
+    <link rel="stylesheet" href="../css/loading.css">
+
+=======
     
+>>>>>>> ec6ce5976a480027ae4b9f379390c39d61f9adc1
 </head>
 <body>
+<div class="loader_bg">
+    <div class="loader"><img src="../images/loading.gif" alt="#" /><br><p>Loading</p></div>
+</div>
     <div class="content">
         <div class="header">
             <div class="user-actions">
@@ -38,7 +55,7 @@
         Our Lost and Found service is dedicated to reuniting lost items with their rightful owners.
         Explore, report, and recover items with ease.
     </div>
-    <h3>Recently Posted</h3>
+    <h3>Recently Claimed</h3>
     <div class="featured-items">
         <div class="featured-item">
         <img src="../images/apple.jpg" alt="Apple Pencil">
@@ -89,6 +106,11 @@
     </div>
 </div>
 <script>
+    window.addEventListener('load', function() {
+    setTimeout(function() {
+        document.querySelector('.loader_bg').style.display = 'none';
+    }, 480);  
+    });
     // Selecting the signup button element and adding event listener to redirect to signup page on click
     const signupButton = document.querySelector('#signup-button');  
     signupButton.addEventListener('click', () => {

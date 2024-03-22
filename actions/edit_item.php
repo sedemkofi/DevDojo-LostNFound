@@ -1,13 +1,24 @@
 <?php
 session_start();
+require '../settings/connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate input
-    $userID = $_SESSION['user_id'];
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $email = $_POST['email'];
+        if (isset($_POST['setClaimedSubmit'])) {
+        $itemId = $_POST['itemId'];
 
+<<<<<<< HEAD
+
+        // Prepare and execute query to update user details
+        $query = "UPDATE Item SET StatusID=2 WHERE ItemID=?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $itemID);
+        $stmt->execute();
+        if ($stmt->execute()) {
+            header("Location: ../view/missing-items.php?message=request-processed");
+        } else {
+            header("Location: ../view/missing-items.php?error=claim-failed");
+        }
+=======
     // Database connection
     $con = new mysqli('localhost', 'root', '', 'LFS2024');
     if ($con->connect_error) {
@@ -28,6 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         header("Location: ../view/missing-items.php");
         exit();
+>>>>>>> ec6ce5976a480027ae4b9f379390c39d61f9adc1
     }
+    
 }
 ?>

@@ -2,13 +2,13 @@
 <?php
 require '../settings/connection.php';
 require '../settings/core.php';    
-<<<<<<< HEAD
+
 if(!isset($_SESSION['user'])) {
     header("Location: signin.php");
   } 
-=======
-
->>>>>>> ec6ce5976a480027ae4b9f379390c39d61f9adc1
+if ($_SESSION['user']['RoleID'] != 1) {
+    header("Location: ../view/homepage.php");
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,16 +18,13 @@ if(!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings - Website Name</title>
     <link rel="stylesheet" type="text/css" href="../css/settings.css">
-<<<<<<< HEAD
     <link rel="stylesheet" href="../css/loading.css">
-=======
 
->>>>>>> ec6ce5976a480027ae4b9f379390c39d61f9adc1
 </head>
 <body>
-<div class="loader_bg">
-    <div class="loader"><img src="../images/loading.gif" alt="#" /><br><p>Loading</p></div>
-</div>
+    <div class="loader_bg">
+        <div class="loader"><img src="../images/loading.gif" alt="#" /><br><p>Loading</p></div>
+    </div>
     <div class="content">
         <div class="header">
             <div class="user-actions">
@@ -36,9 +33,10 @@ if(!isset($_SESSION['user'])) {
                         <img src="../images/logo.png" alt="Logo" class="lost-logo"> 
                     </button>
                     <div class="dropdown-content">
-                        <a href="homepage.php">Home</a>
-                        <a href="missing-items.php">Missing Items</a>
-                        <a href="contact.php">Contact Us</a>
+                        <a href="admin-missing-items.php">Missing Items</a>
+                        <a href="admin-manage-items.php">Manage Items</a>
+                        <a href="admin-view-requests.php">Manage Requests</a>
+                        <a href="admin-manage-admins.php">View Admins</a>
                     </div>
                 </div>                
             </div>
@@ -83,10 +81,11 @@ if(!isset($_SESSION['user'])) {
 </html>
 <script>
     window.addEventListener('load', function() {
-    setTimeout(function() {
-        document.querySelector('.loader_bg').style.display = 'none';
-    }, 800); 
+        setTimeout(function() {
+            document.querySelector('.loader_bg').style.display = 'none';
+        }, 500);  
     });
+  
     //get reference to the elements in the dom
     const changePasswordButton = document.getElementById('change-password-button');
     const confirmPasswordContainer = document.getElementById('confirm-password-container');

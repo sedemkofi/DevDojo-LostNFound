@@ -1,4 +1,18 @@
 <?php
+<<<<<<< HEAD
+  session_start();
+  session_unset();
+
+  if (isset($_GET['error'])) {
+      if ($_GET['error'] == 'wrong_password') {
+          echo '<script>alert("Wrong password")</script>';
+      } elseif ($_GET['error'] == 'only_admins') {
+          echo '<script>alert("This account is not an admin")</script>';
+      } elseif ($_GET['error'] == 'wrong_email') {
+          echo '<script>alert("Enter an Ashesi email address with an account")</script>';
+      }
+  }
+=======
 if (isset($_GET['error'])) {
     if ($_GET['error'] == 'wrong_password') {
         echo '<script>alert("Wrong password. You do not have access to this account")</script>';
@@ -8,6 +22,7 @@ if (isset($_GET['error'])) {
         echo '<script>alert("Enter an Ashesi email address with an account")</script>';
     }
 }
+>>>>>>> ec6ce5976a480027ae4b9f379390c39d61f9adc1
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,8 +32,15 @@ if (isset($_GET['error'])) {
 <title>Sign In</title>
 <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@400;700&family=Gamja+Flower&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/sign-in.css">
+<<<<<<< HEAD
+<link rel="stylesheet" href="../css/loading.css">
+=======
+>>>>>>> ec6ce5976a480027ae4b9f379390c39d61f9adc1
 </head>
 <body>
+<div class="loader_bg">
+    <div class="loader"><img src="../images/loading.gif" alt="#" /><br><p>Loading</p></div>
+</div>
 <br>
 <div class="login-type-link">
   <a href="../admin/admin-sign-in.php">admin</a>
@@ -46,17 +68,19 @@ if (isset($_GET['error'])) {
     <div></div>
   </div>
 
-  <div class="social-buttons">
-    <a href="#" class="social-button" id="facebook">f</a>
-    <a href="#" class="social-button" id="google">G</a>
-    <a href="#" class="social-button" id="twitter">t</a>
-  </div>
-
   <div class="signup-prompt">
     <span>Don’t have account? <a href="signup.php">Sign up</a></span>
   </div>
 </div>
 <script>
+<<<<<<< HEAD
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+        document.querySelector('.loader_bg').style.display = 'none';
+    }, 800);  // 1000 milliseconds = 1 seconds
+    });
+=======
+>>>>>>> ec6ce5976a480027ae4b9f379390c39d61f9adc1
         function validateForm() {
             const loginEmail = document.getElementById('loginEmail').value;
             const loginPassword = document.getElementById('loginPassword').value;

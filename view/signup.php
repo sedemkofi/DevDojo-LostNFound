@@ -21,9 +21,17 @@
 <title>Sign Up</title>
 <link href="https://fonts.googleapis.com/css2?family=Enriqueta:wght@400;700&family=Gamja+Flower&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/signup.css">
+<<<<<<< HEAD
+<link rel="stylesheet" href="../css/loading.css">
+
+=======
+>>>>>>> ec6ce5976a480027ae4b9f379390c39d61f9adc1
 
 </head>
 <body>
+<div class="loader_bg">
+    <div class="loader"><img src="../images/loading.gif" alt="#" /><br><p>Loading</p></div>
+</div>
 <div class="header">DevDojo <br>
   <span style="font-size: 15px; color:#5cb85c">ashesi lost and found</span> 
 </div>
@@ -65,5 +73,15 @@
 
 </body>
 <script src="../js/sign-up.js"></script>
+<<<<<<< HEAD
+<script>
+  window.addEventListener('load', function() {
+      setTimeout(function() {
+          document.querySelector('.loader_bg').style.display = 'none';
+      }, 600);  
+    });
+</script>
+=======
+>>>>>>> ec6ce5976a480027ae4b9f379390c39d61f9adc1
 </html>
 
