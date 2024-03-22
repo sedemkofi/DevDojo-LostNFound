@@ -1,32 +1,29 @@
 <?php
-session_start();
+require '../settings/connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate input
-    $userID = $_SESSION['user_id'];
+    if (isset($_POST['deleteItemSubmit'])) {
+        $itemId = $_POST['itemId'];
 
-    // Database connection
-    $con = new mysqli('localhost', 'root', '', 'LFS2024');
-    if ($con->connect_error) {
-        echo "Failed to connect";
-        exit();
-    }
+        // Prepare an SQL statement
+        $stmt = $conn->prepare("DELETE FROM Item WHERE ItemID = ?");
 
-    // Prepare and execute query to delete user
-    $query = "DELETE FROM User WHERE UserID=?";
-    $stmt = $con->prepare($query);
-    $stmt->bind_param("i", $userID);
-    $stmt->execute();
+        // Bind parameters
+        $stmt->bind_param("i", $itemId);
 
-    // Check if user was successfully deleted
-    if ($stmt->affected_rows == 1) {
-        // Log out user after deletion
-        session_destroy();
-        header('Location: ../view/signup.php');
-        exit();
-    } else {
-        header('Location: ../view/homepage.php');
-        exit();
+        // Execute the statement
+        if ($stmt->execute()) {
+            echo "Item deleted successfully";
+            header("Location: ../admin/admin-manage-items.php");
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        // Close the statement
+        $stmt->close();
     }
 }
+
+// Close the connection
+$conn->close();
 ?>

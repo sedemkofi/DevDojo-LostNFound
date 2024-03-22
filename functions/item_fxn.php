@@ -11,7 +11,10 @@ function displayItems($items) {
         echo "<td style='text-align: center;'>" . $item['LocationFound'] . "</td>";
         echo "<td style='text-align: center;'>
             <button style='height: 20px; width: 80px; margin-right:5px' class='editItemButton' id='editItemButton'>Edit</button>
-            <button style='height: 20px; width: 80px;' class='deleteItemButton' id='deleteItemButton'>Remove</button>
+            <form action='deleteitem.php' method='post'>
+                <input type='hidden' name='itemId' id='itemId' value='{$item['ItemID']}'>
+                <button type='submit' name='deleteItemSubmit' style='height: 20px; width: 80px;' class='deleteItemButton' id='deleteItemButton'>Remove</button>
+            </form>        
         </td>";
         echo "</tr>";
     }
